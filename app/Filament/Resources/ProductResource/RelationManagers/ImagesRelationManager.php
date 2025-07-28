@@ -24,15 +24,22 @@ class ImagesRelationManager extends RelationManager
                     ->directory('product-images') // Dossier de stockage dans storage/app/public
                     ->visibility('public') // Rend le fichier accessible publiquement
                     ->required(),
+                Forms\Components\Toggle::make('is_primary')
+                    ->label('Image principale')
+                    ->helperText('Une seule image peut être principale par produit.'),
             ]);
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('imiiii')
+            ->recordTitleAttribute('image_path')
             ->columns([
-                Tables\Columns\TextColumn::make('imiiii'),
+                Tables\Columns\ImageColumn::make('image_path')
+                    ->label('Image')
+                    ->width(100)
+                    ->height(100)
+                    ->circular(),
             ])
             ->filters([
                 //

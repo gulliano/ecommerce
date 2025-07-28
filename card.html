@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte Produit - Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .product-card {
+            width: 320px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff6b6b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .wishlist-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-category {
+            color: #8b5cf6;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 12px 0;
+            line-height: 1.3;
+        }
+
+        .product-description {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .price-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .price-current {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .price-original {
+            font-size: 16px;
+            color: #9ca3af;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        .discount {
+            background: #dcfce7;
+            color: #16a34a;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            display: flex;
+            margin-right: 8px;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 14px;
+        }
+
+        .rating-text {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .size-options {
+            margin-bottom: 20px;
+        }
+
+        .size-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .size-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .size-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .size-btn:hover, .size-btn.active {
+            border-color: #8b5cf6;
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .add-to-cart:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="product-card">
+        <div class="product-image">
+            <div class="image-placeholder">👕</div>
+            <div class="badge">Nouveau</div>
+            <button class="wishlist-btn">♡</button>
+        </div>
+        
+        <div class="product-info">
+            <div class="product-category">Mode Femme</div>
+            <h2 class="product-title">T-shirt Premium Coton Bio</h2>
+            <p class="product-description">
+                T-shirt ultra-doux en coton biologique, coupe moderne et confortable. Parfait pour un style décontracté et élégant.
+            </p>
+            
+            <div class="price-section">
+                <div>
+                    <span class="price-current">29,90 €</span>
+                    <span class="price-original">39,90 €</span>
+                </div>
+                <div class="discount">-25%</div>
+            </div>
+            
+            <div class="rating">
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <span class="rating-text">4.8 (124 avis)</span>
+            </div>
+            
+            <div class="size-options">
+                <div class="size-label">Taille</div>
+                <div class="size-buttons">
+                    <button class="size-btn">XS</button>
+                    <button class="size-btn">S</button>
+                    <button class="size-btn active">M</button>
+                    <button class="size-btn">L</button>
+                    <button class="size-btn">XL</button>
+                </div>
+            </div>
+            
+            <button class="add-to-cart">Ajouter au panier</button>
+        </div>
+    </div>
+
+    <script>
+        // Gestion des tailles
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Gestion du wishlist
+        const wishlistBtn = document.querySelector('.wishlist-btn');
+        wishlistBtn.addEventListener('click', () => {
+            wishlistBtn.innerHTML = wishlistBtn.innerHTML === '♡' ? '♥' : '♡';
+            wishlistBtn.style.color = wishlistBtn.innerHTML === '♥' ? '#ff6b6b' : '#000';
+        });
+
+        // Animation panier
+        document.querySelector('.add-to-cart').addEventListener('click', function() {
+            this.innerHTML = 'Ajouté ! ✓';
+            this.style.background = '#10b981';
+            setTimeout(() => {
+                this.innerHTML = 'Ajouter au panier';
+                this.style.background = 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
